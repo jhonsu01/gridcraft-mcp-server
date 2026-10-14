@@ -1,0 +1,71 @@
+{
+  "name": "gridcraft-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for GridCraft: sheets with live formulas, tables, formats, conditional formatting, charts and PivotTables, xlsx, csv, json, html and pdf, with GridCraft's own engine, from Claude (Windows, macOS, Linux).",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "gridcraft-mcp-server": "dist/index.js"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "build": "tsc && node scripts/bundle.mjs",
+    "start": "node dist/index.js",
+    "test": "vitest run",
+    "test:e2e": "node scripts/e2e.mjs",
+    "pack:mcpb": "npm run build && npx -y @anthropic-ai/mcpb pack . gridcraft-mcp-server.mcpb",
+    "pack:codex": "npm run build && node scripts/pack-codex.mjs"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "gridcraft",
+    "excel",
+    "xlsx",
+    "spreadsheet",
+    "formulas",
+    "csv",
+    "pivot-table",
+    "charts",
+    "data",
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "author": "Jhon Supelano (https://github.com/jhonsu01)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhonsu01/gridcraft-mcp-server.git"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "os": [
+    "win32",
+    "darwin",
+    "linux"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  },
+  "codex": {
+    "shortDescription": "Build, edit, analyze and convert spreadsheets with your local GridCraft",
+    "category": "Productivity",
+    "brandColor": "#21A04F",
+    "defaultPrompt": [
+      "Build a monthly budget workbook with formulas, a chart and a summary sheet",
+      "Read this xlsx and tell me the total sales by region",
+      "Convert every workbook in this folder to CSV"
+    ]
+  }
+}

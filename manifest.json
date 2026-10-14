@@ -1,0 +1,117 @@
+{
+  "manifest_version": "0.3",
+  "name": "gridcraft-mcp-server",
+  "version": "1.0.0",
+  "display_name": "GridCraft Bridge",
+  "description": "Build, edit, read and convert spreadsheets with the GridCraft app installed on Windows, macOS or Linux: sheets with live formulas, tables, formats, conditional formatting, charts and PivotTables, xlsx, csv, json, html and pdf. Not affiliated with GridCraft or Storytold.",
+  "long_description": "Work on spreadsheets with the GridCraft you already have installed on Windows, macOS or Linux (tested with 0.6.1 on Windows 11), the open-source, Excel-class spreadsheet app.\n\n- **Create** workbooks from sheets of values and live formulas (513 Excel functions, dynamic arrays): header styling, tables with filter buttons, totals rows, number formats, fonts, colours, borders, merged cells, conditional formatting, drop-down lists, notes, charts (17 types), PivotTables, frozen panes and print setup.\n- **Edit** existing xlsx, ods or csv files: write values and formulas, find and replace, insert and delete rows and columns, sort, remove duplicates, add, rename or delete sheets.\n- **Read and calculate**: computed values, formulas or display text of any range, and formulas evaluated without changing the file; every result shows the first rows and any formula errors.\n- **Convert** between xlsx, xlsm, xls, xlsb, ods, csv, tsv and json in, and xlsx, csv, tsv, json, html and pdf out.\n- **Advanced**: run any of GridCraft's 339 engine commands and open workbooks in the GridCraft app.\n\nThe connector drives GridCraft's own headless engine (gridcraft-cli). Everything runs locally with no network access; originals are only read and files are never overwritten unless you ask. GridCraft is an open-source project by Storytold; this connector is not affiliated with or endorsed by them.",
+  "author": {
+    "name": "Jhon Supelano",
+    "url": "https://github.com/jhonsu01"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jhonsu01/gridcraft-mcp-server.git"
+  },
+  "homepage": "https://github.com/jhonsu01/gridcraft-mcp-server",
+  "support": "https://github.com/jhonsu01/gridcraft-mcp-server/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "dist/bundle.cjs",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/bundle.cjs"
+      ],
+      "env": {
+        "GRIDCRAFT_DIR": "${user_config.gridcraft_dir}",
+        "GRIDCRAFT_CLI": "${user_config.gridcraft_cli}",
+        "GRIDCRAFT_CONTROL_PORT": "${user_config.control_port}"
+      }
+    }
+  },
+  "user_config": {
+    "gridcraft_dir": {
+      "type": "directory",
+      "title": "GridCraft folder",
+      "description": "Install folder of GridCraft (or GridCraft.app on macOS). Leave empty to auto-detect: C:\\Program Files\\GridCraft, /Applications/GridCraft.app, /usr/bin, /opt/gridcraft or PATH.",
+      "required": false
+    },
+    "gridcraft_cli": {
+      "type": "file",
+      "title": "gridcraft-cli executable (optional)",
+      "description": "Only if it is somewhere else, e.g. where you unzipped the gridcraft-cli zip on macOS.",
+      "required": false
+    },
+    "control_port": {
+      "type": "string",
+      "title": "GridCraft control port (optional)",
+      "description": "Port used to drive the GridCraft app (open_in_gridcraft, run_gridcraft_commands live). Default 7979.",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "platforms": [
+      "win32",
+      "darwin",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  },
+  "tools": [
+    {
+      "name": "create_workbook",
+      "description": "Build a workbook: data, formulas, tables, formats, charts, PivotTables"
+    },
+    {
+      "name": "edit_workbook",
+      "description": "Write cells, find and replace, sort, rows, sheets, formats and charts"
+    },
+    {
+      "name": "read_workbook",
+      "description": "Read computed values or formulas and evaluate formulas"
+    },
+    {
+      "name": "convert_workbook",
+      "description": "Convert between xlsx, ods, csv, tsv, json, html and pdf"
+    },
+    {
+      "name": "get_workbook_info",
+      "description": "Sheets, tables, charts, names, first rows and formula errors"
+    },
+    {
+      "name": "list_gridcraft_catalog",
+      "description": "Engine commands, worksheet functions, chart types and formats"
+    },
+    {
+      "name": "run_gridcraft_commands",
+      "description": "Run any GridCraft engine command, headless or in the live app"
+    },
+    {
+      "name": "open_in_gridcraft",
+      "description": "Open workbooks in the GridCraft app"
+    },
+    {
+      "name": "get_gridcraft_status",
+      "description": "Check the GridCraft installation, version and commands"
+    }
+  ],
+  "keywords": [
+    "gridcraft",
+    "excel",
+    "xlsx",
+    "spreadsheet",
+    "formulas",
+    "csv",
+    "pivot-table",
+    "charts",
+    "data",
+    "windows",
+    "macos",
+    "linux"
+  ],
+  "license": "Apache-2.0"
+}
